@@ -1,16 +1,14 @@
 export class ProductController {
     #productView;
-    #currentUser = null;
-    #events;
     #productService;
-    constructor({
-        productView,
-        events,
-        productService
-    }) {
+    #events;
+    #currentUser = null;
+
+    constructor({ productView, events, productService }) {
         this.#productView = productView;
         this.#productService = productService;
         this.#events = events;
+
         this.init();
     }
 
@@ -21,30 +19,27 @@ export class ProductController {
     async init() {
         this.setupCallbacks();
         this.setupEventListeners();
-        const products = await this.#productService.getProducts();
-        this.#productView.render(products, true);
+
+        const motos = await this.#productService.getProducts();
+        this.#productView.render(motos, { disableButtons: true });
     }
 
     setupEventListeners() {
-
         this.#events.onUserSelected((user) => {
             this.#currentUser = user;
             this.#productView.onUserSelected(user);
-            this.#events.dispatchRecommend(user)
-        })
+        });
 
         this.#events.onRecommendationsReady(({ recommendations }) => {
-            this.#productView.render(recommendations, false);
+            this.#productView.render(recommendations, { disableButtons: false, ranked: true });
         });
     }
 
     setupCallbacks() {
-        this.#productView.registerBuyProductCallback(this.handleBuyProduct.bind(this));
+        this.#productView.registerBuyProductCallback(this.handleAddToGarage.bind(this));
     }
 
-    async handleBuyProduct(product) {
-        const user = this.#currentUser;
-        this.#events.dispatchPurchaseAdded({ user, product });
+    async handleAddToGarage(moto) {
+        this.#events.dispatchPurchaseAdded({ user: this.#currentUser, product: moto });
     }
-
 }

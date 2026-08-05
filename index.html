@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Recommendation System</title>
+    <title>Preditor de Estilo de Moto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./style.css">
@@ -12,76 +12,96 @@
 
 <body>
     <div class="main">
-        <h1>E-commerce Recommendation System</h1>
+        <h1>🏍️ Preditor de Estilo de Moto</h1>
+        <p class="text-muted">
+            A partir de <strong>idade</strong>, <strong>gênero</strong> e <strong>condição financeira</strong>,
+            uma rede neural treinada no browser tenta adivinhar qual estilo de moto a pessoa tem.
+        </p>
 
         <div class="row mt-3">
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h4>User Profile</h4>
+                        <h4 class="mb-0"><i class="bi bi-person"></i> Perfil</h4>
                     </div>
                     <div class="card-body">
                         <form id="userForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="userSelect" class="form-label">Select User</label>
-                                    <select class="form-select" id="userSelect">
-                                        <option value="">-- Select a user --</option>
-                                    </select>
-                                </div>
+                            <div class="mb-3">
+                                <label for="userSelect" class="form-label">Pessoa</label>
+                                <select class="form-select" id="userSelect">
+                                    <option value="">-- Escolha uma pessoa --</option>
+                                </select>
+                            </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label for="userAge" class="form-label">Age</label>
-                                    <input type="number" class="form-control" id="userAge" disabled>
+                            <div class="row">
+                                <div class="col-4 mb-3">
+                                    <label for="userAge" class="form-label">Idade</label>
+                                    <input type="text" class="form-control" id="userAge" disabled>
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <label for="userGender" class="form-label">Gênero</label>
+                                    <input type="text" class="form-control" id="userGender" disabled>
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <label for="userFinancial" class="form-label">Renda</label>
+                                    <input type="text" class="form-control" id="userFinancial" disabled>
                                 </div>
                             </div>
                         </form>
 
-                        <div id="pastPurchasesContainer" class="mt-4">
-                            <h5>Past Purchases</h5>
+                        <div id="pastPurchasesContainer" class="mt-2">
+                            <h6>Garagem</h6>
                             <div id="pastPurchasesList" class="row"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h4>Model Training</h4>
+                        <h4 class="mb-0"><i class="bi bi-cpu"></i> Modelo</h4>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="model-controls d-flex gap-2">
-                                <button id="trainModelBtn" class="btn btn-primary train-model-btn">
-                                    <i class="bi bi-cpu"></i> Train Model
-                                </button>
-                                <button disabled id="runRecommendationBtn" class="btn btn-success train-model-btn">
-                                    <i class="bi bi-cpu"></i> Run Recommendation
-                                </button>
-                            </div>
+                        <div class="model-controls d-flex gap-2">
+                            <button id="trainModelBtn" class="btn btn-primary train-model-btn">
+                                <i class="bi bi-cpu"></i> Treinar modelo
+                            </button>
+                            <button disabled id="runRecommendationBtn" class="btn btn-success train-model-btn">
+                                <i class="bi bi-magic"></i> Prever estilo
+                            </button>
                         </div>
 
+                        <div id="trainingStats"></div>
 
-                        <div class="all-users-purchases">
-                            <h5 id="purchasesDiv" style="cursor: pointer;">
-                                All Users Purchase Data
+                        <div class="all-users-purchases mt-3">
+                            <h6 id="purchasesDiv" style="cursor: pointer;">
+                                Garagem de todo mundo
                                 <i id="purchasesArrow" class="bi bi-chevron-down"></i>
-                            </h5>
+                            </h6>
                             <div id="allUsersPurchasesList" class="user-purchases-data overflow-auto"
-                                style="max-height: 400px;display: none;">
+                                style="max-height: 400px; display: none;">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4 class="mb-0"><i class="bi bi-magic"></i> Estilo previsto</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="stylePrediction"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h3 class="">Products</h3>
-        <div class="row" id="productList">
-        </div>
+        <h3 id="productListTitle">Catálogo de motos</h3>
+        <div class="row" id="productList"></div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.5.1/dist/tfjs-vis.umd.min.js"></script>
     <script type="module" src="./src/index.js"></script>

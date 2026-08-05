@@ -1,0 +1,66 @@
+[
+    {
+        "id": 901,
+        "name": "Josézin da Silva",
+        "age": 30,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": []
+    },
+    {
+        "id": 902,
+        "name": "Marina Castro",
+        "age": 22,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 903,
+        "name": "Ricardo Tavares",
+        "age": 58,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": []
+    },
+    {
+        "id": 904,
+        "name": "Bianca Nogueira",
+        "age": 27,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": []
+    },
+    {
+        "id": 905,
+        "name": "Otávio Prado",
+        "age": 19,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": []
+    },
+    {
+        "id": 906,
+        "name": "Sueli Amorim",
+        "age": 64,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": []
+    },
+    {
+        "id": 907,
+        "name": "Henrique Bastos",
+        "age": 41,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": []
+    },
+    {
+        "id": 908,
+        "name": "Paula Rezende",
+        "age": 35,
+        "gender": "feminino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    }
+]

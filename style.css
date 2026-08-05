@@ -7,30 +7,24 @@ body {
     max-width: 1600px;
 }
 
-.product-card {
+.main {
+    padding: 20px;
+}
+
+/* ---------- catálogo de motos ---------- */
+
+.moto-card {
     margin-bottom: 20px;
     height: 100%;
 }
 
-.past-purchase {
-    background-color: #f8f9fa;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 5px;
-    font-size: 0.9em;
-    border-left: 3px solid #0d6efd;
-    transition: all 0.3s ease;
-    cursor: pointer;
+.moto-card .card-title {
+    font-size: 0.95rem;
+    min-height: 2.4em;
 }
 
-.past-purchase:hover {
-    background-color: #f8d7da;
-    border-left: 3px solid #dc3545;
-}
-
-.past-purchase-highlight {
-    background-color: #d4edda;
-    border-left: 3px solid #28a745;
+.moto-score .badge {
+    font-weight: 600;
 }
 
 .card-body {
@@ -46,6 +40,29 @@ body {
     margin-bottom: 20px;
 }
 
+/* ---------- garagem ---------- */
+
+.past-purchase {
+    background-color: #f8f9fa;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 0.85em;
+    border-left: 3px solid #0d6efd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.past-purchase:hover {
+    background-color: #f8d7da;
+    border-left: 3px solid #dc3545;
+}
+
+.past-purchase-highlight {
+    background-color: #d4edda;
+    border-left: 3px solid #28a745;
+}
+
 .user-purchase-summary {
     border-bottom: 1px solid #dee2e6;
     padding: 8px 0;
@@ -55,6 +72,12 @@ body {
     border-bottom: none;
 }
 
+.user-purchases-data {
+    transition: max-height 0.3s ease;
+}
+
+/* ---------- painel do modelo ---------- */
+
 .model-controls {
     margin-bottom: 20px;
 }
@@ -63,19 +86,45 @@ body {
     margin-right: 10px;
 }
 
-.training-status {
-    display: none;
-    margin-top: 10px;
+.training-stats {
+    font-size: 0.85rem;
 }
 
-.training-progress {
-    height: 5px;
+.training-stats td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
 }
 
-.main {
-    padding: 20px;
+/* ---------- predição de estilo ---------- */
+
+.prediction-winner {
+    text-align: center;
+    padding: 12px 0 16px;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 12px;
 }
 
-.user-purchases-data {
-    transition: max-height 0.3s ease;
+.prediction-style {
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    line-height: 1.2;
+}
+
+.style-row {
+    margin-bottom: 10px;
+}
+
+.style-row span {
+    text-transform: capitalize;
+}
+
+.style-bar {
+    height: 8px;
+    margin: 2px 0;
+}
+
+.style-hint {
+    font-size: 0.72rem;
 }

@@ -10,9 +10,14 @@ export class View {
 
     replaceTemplate(template, data) {
         let result = template;
+
         for (const [key, value] of Object.entries(data)) {
-            result = result.replace(new RegExp(`{{${key}}}`, 'g'), value);
+            // O replacer é uma função de propósito: valores como "R$ 62.000"
+            // ou JSON com $ seriam interpretados como padrões especiais ($&, $1...)
+            // se passados como string.
+            result = result.replace(new RegExp(`{{${key}}}`, 'g'), () => value);
         }
+
         return result;
     }
 }

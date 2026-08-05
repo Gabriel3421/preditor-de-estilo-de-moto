@@ -1,120 +1,2277 @@
 [
     {
         "id": 1,
-        "name": "Ana Lima",
-        "age": 25,
+        "name": "Alexandre Ferreira",
+        "age": 43,
+        "gender": "masculino",
+        "financialStatus": "alta",
         "purchases": [
             {
-                "id": 1,
-                "name": "Fones de Ouvido Sem Fio",
-                "category": "eletrônicos",
-                "price": 129.99,
-                "color": "preto"
+                "id": 34,
+                "name": "BMW R 1300 GS",
+                "category": "big trail",
+                "price": 145000,
+                "cilindrada": 1300
             },
             {
-                "id": 2,
-                "name": "Relógio Inteligente",
-                "category": "eletrônicos",
-                "price": 199.99,
-                "color": "prata"
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
             }
         ]
     },
     {
         "id": 2,
-        "name": "Bruno Ferreira",
-        "age": 27,
+        "name": "Fernanda Lopes",
+        "age": 64,
+        "gender": "feminino",
+        "financialStatus": "media",
         "purchases": [
             {
-                "id": 1,
-                "name": "Fones de Ouvido Sem Fio",
-                "category": "eletrônicos",
-                "price": 129.99,
-                "color": "preto"
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
             },
             {
-                "id": 3,
-                "name": "Caixa de Som Bluetooth",
-                "category": "eletrônicos",
-                "price": 89.99,
-                "color": "azul"
+                "id": 4,
+                "name": "Honda ADV 350",
+                "category": "scooter",
+                "price": 39000,
+                "cilindrada": 330
             }
         ]
     },
     {
         "id": 3,
-        "name": "Camila Souza",
-        "age": 30,
-        "purchases": [
-            {
-                "id": 4,
-                "name": "Camiseta Estampada",
-                "category": "vestuário",
-                "price": 49.99,
-                "color": "vermelho"
-            },
-            {
-                "id": 5,
-                "name": "Calça Jeans Slim",
-                "category": "vestuário",
-                "price": 99.99,
-                "color": "azul"
-            }
-        ]
+        "name": "Felipe Moreira",
+        "age": 22,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
     },
     {
         "id": 4,
-        "name": "Diego Almeida",
-        "age": 22,
+        "name": "Flávia Gomes",
+        "age": 21,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 5,
+        "name": "Henrique Barbosa",
+        "age": 19,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 6,
+        "name": "Gabriela Lima",
+        "age": 40,
+        "gender": "feminino",
+        "financialStatus": "media",
         "purchases": [
             {
-                "id": 2,
-                "name": "Relógio Inteligente",
-                "category": "eletrônicos",
-                "price": 199.99,
-                "color": "prata"
-            },
-            {
-                "id": 3,
-                "name": "Caixa de Som Bluetooth",
-                "category": "eletrônicos",
-                "price": 89.99,
-                "color": "azul"
-            },
-            {
-                "id": 6,
-                "name": "Tênis Esportivo",
-                "category": "calçados",
-                "price": 149.99,
-                "color": "branco"
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
             }
         ]
     },
     {
-        "id": 5,
-        "name": "Eduarda Nunes",
-        "age": 28,
+        "id": 7,
+        "name": "Michele Martins",
+        "age": 50,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 8,
+        "name": "Otávio Vieira",
+        "age": 25,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 9,
+        "name": "Carolina Ferreira",
+        "age": 43,
+        "gender": "feminino",
+        "financialStatus": "baixa",
         "purchases": [
             {
-                "id": 1,
-                "name": "Fones de Ouvido Sem Fio",
-                "category": "eletrônicos",
-                "price": 129.99,
-                "color": "preto"
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Sabrina Costa",
+        "age": 44,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Priscila Correia",
+        "age": 30,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 5,
+                "name": "Honda CG 160 Start",
+                "category": "street",
+                "price": 14500,
+                "cilindrada": 162
             },
             {
                 "id": 6,
-                "name": "Tênis Esportivo",
-                "category": "calçados",
-                "price": 149.99,
-                "color": "branco"
+                "name": "Honda CG 160 Titan",
+                "category": "street",
+                "price": 16500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Olívia Cardoso",
+        "age": 37,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Eduardo Barbosa",
+        "age": 41,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Daniela Teixeira",
+        "age": 29,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 15,
+        "name": "Letícia Alves",
+        "age": 45,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 15,
+                "name": "Yamaha R3",
+                "category": "esportiva",
+                "price": 36000,
+                "cilindrada": 321
+            },
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            },
+            {
+                "id": 17,
+                "name": "Yamaha R7",
+                "category": "esportiva",
+                "price": 62000,
+                "cilindrada": 689
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Sérgio Araújo",
+        "age": 19,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            },
+            {
+                "id": 18,
+                "name": "Honda CBR 650R",
+                "category": "esportiva",
+                "price": 65000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Karina Correia",
+        "age": 29,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 6,
+                "name": "Honda CG 160 Titan",
+                "category": "street",
+                "price": 16500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Igor Gomes",
+        "age": 46,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 7,
+                "name": "Yamaha Factor 150",
+                "category": "street",
+                "price": 17000,
+                "cilindrada": 149
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Bruno Fernandes",
+        "age": 28,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 7,
+                "name": "Yamaha Factor 150",
+                "category": "street",
+                "price": 17000,
+                "cilindrada": 149
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Eduarda Correia",
+        "age": 61,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 35,
+                "name": "Kawasaki Versys 650",
+                "category": "touring",
+                "price": 55000,
+                "cilindrada": 649
+            },
+            {
+                "id": 36,
+                "name": "Yamaha Tracer 7",
+                "category": "touring",
+                "price": 58000,
+                "cilindrada": 689
+            },
+            {
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "name": "Giovana Teixeira",
+        "age": 47,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Priscila Cardoso",
+        "age": 32,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 27,
+                "name": "Yamaha Lander 250",
+                "category": "trail",
+                "price": 27000,
+                "cilindrada": 249
+            },
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            },
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "name": "Giovana Rodrigues",
+        "age": 58,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "name": "Natália Dias",
+        "age": 38,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 15,
+                "name": "Yamaha R3",
+                "category": "esportiva",
+                "price": 36000,
+                "cilindrada": 321
+            },
+            {
+                "id": 18,
+                "name": "Honda CBR 650R",
+                "category": "esportiva",
+                "price": 65000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "name": "Elaine Ferreira",
+        "age": 45,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            },
+            {
+                "id": 19,
+                "name": "Kawasaki Ninja ZX-10R",
+                "category": "esportiva",
+                "price": 145000,
+                "cilindrada": 998
+            },
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "name": "Paulo Soares",
+        "age": 23,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 27,
+        "name": "Tiago Oliveira",
+        "age": 24,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 28,
+        "name": "Bruno Ribeiro",
+        "age": 28,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 22,
+                "name": "Royal Enfield Meteor 350",
+                "category": "custom",
+                "price": 32000,
+                "cilindrada": 349
+            },
+            {
+                "id": 32,
+                "name": "BMW F 850 GS",
+                "category": "big trail",
+                "price": 92000,
+                "cilindrada": 853
+            },
+            {
+                "id": 25,
+                "name": "Harley-Davidson Fat Boy",
+                "category": "custom",
+                "price": 145000,
+                "cilindrada": 1868
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "name": "Carlos Santos",
+        "age": 28,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 30,
+        "name": "André Ribeiro",
+        "age": 41,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 37,
+                "name": "BMW R 1250 RT",
+                "category": "touring",
+                "price": 160000,
+                "cilindrada": 1254
+            },
+            {
+                "id": 39,
+                "name": "Honda Gold Wing",
+                "category": "touring",
+                "price": 280000,
+                "cilindrada": 1833
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "name": "Leandro Freitas",
+        "age": 64,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 29,
+                "name": "Royal Enfield Himalayan 450",
+                "category": "big trail",
+                "price": 42000,
+                "cilindrada": 452
+            },
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "name": "Rafaela Araújo",
+        "age": 50,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 11,
+                "name": "Yamaha MT-07",
+                "category": "naked",
+                "price": 52000,
+                "cilindrada": 689
+            },
+            {
+                "id": 12,
+                "name": "Honda CB 650R",
+                "category": "naked",
+                "price": 62000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "name": "Ingrid Martins",
+        "age": 29,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 6,
+                "name": "Honda CG 160 Titan",
+                "category": "street",
+                "price": 16500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "name": "Isabela Freitas",
+        "age": 60,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 35,
+        "name": "Giovana Mendes",
+        "age": 44,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 11,
+                "name": "Yamaha MT-07",
+                "category": "naked",
+                "price": 52000,
+                "cilindrada": 689
+            },
+            {
+                "id": 31,
+                "name": "Yamaha Ténéré 700",
+                "category": "big trail",
+                "price": 75000,
+                "cilindrada": 689
+            },
+            {
+                "id": 13,
+                "name": "Kawasaki Z900",
+                "category": "naked",
+                "price": 75000,
+                "cilindrada": 948
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "name": "Felipe Oliveira",
+        "age": 37,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 37,
+        "name": "Camila Silva",
+        "age": 40,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 8,
+                "name": "Honda CB 300F Twister",
+                "category": "street",
+                "price": 24000,
+                "cilindrada": 293
+            },
+            {
+                "id": 7,
+                "name": "Yamaha Factor 150",
+                "category": "street",
+                "price": 17000,
+                "cilindrada": 149
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "name": "Thiago Pereira",
+        "age": 60,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 39,
+        "name": "Olívia Fernandes",
+        "age": 27,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 18,
+                "name": "Honda CBR 650R",
+                "category": "esportiva",
+                "price": 65000,
+                "cilindrada": 649
+            },
+            {
+                "id": 15,
+                "name": "Yamaha R3",
+                "category": "esportiva",
+                "price": 36000,
+                "cilindrada": 321
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "name": "Gustavo Araújo",
+        "age": 22,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 41,
+        "name": "Débora Moreira",
+        "age": 29,
+        "gender": "feminino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 42,
+        "name": "Carlos Moreira",
+        "age": 42,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 21,
+                "name": "Haojue Chopper Road 150",
+                "category": "custom",
+                "price": 16000,
+                "cilindrada": 150
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "name": "Rafael Rocha",
+        "age": 55,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 1,
+                "name": "Honda Biz 125",
+                "category": "scooter",
+                "price": 11500,
+                "cilindrada": 125
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "name": "Gabriela Mendes",
+        "age": 43,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 4,
+                "name": "Honda ADV 350",
+                "category": "scooter",
+                "price": 39000,
+                "cilindrada": 330
+            },
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "name": "Daniel Pereira",
+        "age": 24,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 7,
+                "name": "Yamaha Factor 150",
+                "category": "street",
+                "price": 17000,
+                "cilindrada": 149
             },
             {
                 "id": 5,
-                "name": "Calça Jeans Slim",
-                "category": "vestuário",
-                "price": 99.99,
-                "color": "azul"
+                "name": "Honda CG 160 Start",
+                "category": "street",
+                "price": 14500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "name": "Wesley Alves",
+        "age": 60,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 6,
+                "name": "Honda CG 160 Titan",
+                "category": "street",
+                "price": 16500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "name": "Guilherme Costa",
+        "age": 39,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 31,
+                "name": "Yamaha Ténéré 700",
+                "category": "big trail",
+                "price": 75000,
+                "cilindrada": 689
+            },
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            },
+            {
+                "id": 29,
+                "name": "Royal Enfield Himalayan 450",
+                "category": "big trail",
+                "price": 42000,
+                "cilindrada": 452
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "name": "Henrique Lopes",
+        "age": 51,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 4,
+                "name": "Honda ADV 350",
+                "category": "scooter",
+                "price": 39000,
+                "cilindrada": 330
+            },
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "name": "Olívia Lopes",
+        "age": 21,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 5,
+                "name": "Honda CG 160 Start",
+                "category": "street",
+                "price": 14500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "name": "Felipe Ribeiro",
+        "age": 46,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 11,
+                "name": "Yamaha MT-07",
+                "category": "naked",
+                "price": 52000,
+                "cilindrada": 689
+            },
+            {
+                "id": 21,
+                "name": "Haojue Chopper Road 150",
+                "category": "custom",
+                "price": 16000,
+                "cilindrada": 150
+            },
+            {
+                "id": 10,
+                "name": "Kawasaki Z400",
+                "category": "naked",
+                "price": 39000,
+                "cilindrada": 399
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "name": "Diego Dias",
+        "age": 31,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 27,
+                "name": "Yamaha Lander 250",
+                "category": "trail",
+                "price": 27000,
+                "cilindrada": 249
+            },
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            },
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "name": "Tatiane Teixeira",
+        "age": 32,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 36,
+                "name": "Yamaha Tracer 7",
+                "category": "touring",
+                "price": 58000,
+                "cilindrada": 689
+            },
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            },
+            {
+                "id": 35,
+                "name": "Kawasaki Versys 650",
+                "category": "touring",
+                "price": 55000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "name": "Matheus Rocha",
+        "age": 66,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 29,
+                "name": "Royal Enfield Himalayan 450",
+                "category": "big trail",
+                "price": 42000,
+                "cilindrada": 452
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "name": "Eduarda Ribeiro",
+        "age": 65,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "name": "Wesley Martins",
+        "age": 47,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 4,
+                "name": "Honda ADV 350",
+                "category": "scooter",
+                "price": 39000,
+                "cilindrada": 330
+            },
+            {
+                "id": 11,
+                "name": "Yamaha MT-07",
+                "category": "naked",
+                "price": 52000,
+                "cilindrada": 689
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "name": "Leandro Vieira",
+        "age": 57,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 22,
+                "name": "Royal Enfield Meteor 350",
+                "category": "custom",
+                "price": 32000,
+                "cilindrada": 349
+            },
+            {
+                "id": 21,
+                "name": "Haojue Chopper Road 150",
+                "category": "custom",
+                "price": 16000,
+                "cilindrada": 150
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "name": "Natália Fernandes",
+        "age": 24,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 9,
+                "name": "Yamaha MT-03",
+                "category": "naked",
+                "price": 33000,
+                "cilindrada": 321
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "name": "Caio Fernandes",
+        "age": 61,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 38,
+                "name": "Harley-Davidson Road Glide",
+                "category": "touring",
+                "price": 210000,
+                "cilindrada": 1923
+            },
+            {
+                "id": 35,
+                "name": "Kawasaki Versys 650",
+                "category": "touring",
+                "price": 55000,
+                "cilindrada": 649
+            },
+            {
+                "id": 39,
+                "name": "Honda Gold Wing",
+                "category": "touring",
+                "price": 280000,
+                "cilindrada": 1833
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "name": "Bruno Nunes",
+        "age": 23,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 60,
+        "name": "Fernanda Nunes",
+        "age": 32,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 61,
+        "name": "Sabrina Martins",
+        "age": 44,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            },
+            {
+                "id": 33,
+                "name": "Honda Africa Twin",
+                "category": "big trail",
+                "price": 120000,
+                "cilindrada": 1084
+            },
+            {
+                "id": 25,
+                "name": "Harley-Davidson Fat Boy",
+                "category": "custom",
+                "price": 145000,
+                "cilindrada": 1868
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "name": "Kleber Barbosa",
+        "age": 70,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 27,
+                "name": "Yamaha Lander 250",
+                "category": "trail",
+                "price": 27000,
+                "cilindrada": 249
+            },
+            {
+                "id": 22,
+                "name": "Royal Enfield Meteor 350",
+                "category": "custom",
+                "price": 32000,
+                "cilindrada": 349
+            },
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 63,
+        "name": "Priscila Silva",
+        "age": 32,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 35,
+                "name": "Kawasaki Versys 650",
+                "category": "touring",
+                "price": 55000,
+                "cilindrada": 649
+            },
+            {
+                "id": 8,
+                "name": "Honda CB 300F Twister",
+                "category": "street",
+                "price": 24000,
+                "cilindrada": 293
+            }
+        ]
+    },
+    {
+        "id": 64,
+        "name": "Gustavo Lima",
+        "age": 35,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 6,
+                "name": "Honda CG 160 Titan",
+                "category": "street",
+                "price": 16500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 65,
+        "name": "Sérgio Correia",
+        "age": 32,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 66,
+        "name": "Nelson Fernandes",
+        "age": 64,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            },
+            {
+                "id": 33,
+                "name": "Honda Africa Twin",
+                "category": "big trail",
+                "price": 120000,
+                "cilindrada": 1084
+            },
+            {
+                "id": 31,
+                "name": "Yamaha Ténéré 700",
+                "category": "big trail",
+                "price": 75000,
+                "cilindrada": 689
+            }
+        ]
+    },
+    {
+        "id": 67,
+        "name": "Igor Santos",
+        "age": 21,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
+            }
+        ]
+    },
+    {
+        "id": 68,
+        "name": "Kleber Costa",
+        "age": 22,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 5,
+                "name": "Honda CG 160 Start",
+                "category": "street",
+                "price": 14500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 69,
+        "name": "Nelson Ferreira",
+        "age": 23,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 18,
+                "name": "Honda CBR 650R",
+                "category": "esportiva",
+                "price": 65000,
+                "cilindrada": 649
+            },
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            }
+        ]
+    },
+    {
+        "id": 70,
+        "name": "Fernanda Santos",
+        "age": 24,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 71,
+        "name": "Wesley Lopes",
+        "age": 32,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            },
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 72,
+        "name": "Rafael Carvalho",
+        "age": 57,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 24,
+                "name": "Indian Scout",
+                "category": "custom",
+                "price": 110000,
+                "cilindrada": 1133
+            },
+            {
+                "id": 36,
+                "name": "Yamaha Tracer 7",
+                "category": "touring",
+                "price": 58000,
+                "cilindrada": 689
+            },
+            {
+                "id": 23,
+                "name": "Harley-Davidson Iron 883",
+                "category": "custom",
+                "price": 68000,
+                "cilindrada": 883
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "name": "Mariana Araújo",
+        "age": 28,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            }
+        ]
+    },
+    {
+        "id": 74,
+        "name": "Daniel Lopes",
+        "age": 21,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 75,
+        "name": "Karina Nunes",
+        "age": 56,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            },
+            {
+                "id": 9,
+                "name": "Yamaha MT-03",
+                "category": "naked",
+                "price": 33000,
+                "cilindrada": 321
+            }
+        ]
+    },
+    {
+        "id": 76,
+        "name": "Sérgio Santos",
+        "age": 63,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 25,
+                "name": "Harley-Davidson Fat Boy",
+                "category": "custom",
+                "price": 145000,
+                "cilindrada": 1868
+            },
+            {
+                "id": 24,
+                "name": "Indian Scout",
+                "category": "custom",
+                "price": 110000,
+                "cilindrada": 1133
+            },
+            {
+                "id": 22,
+                "name": "Royal Enfield Meteor 350",
+                "category": "custom",
+                "price": 32000,
+                "cilindrada": 349
+            },
+            {
+                "id": 23,
+                "name": "Harley-Davidson Iron 883",
+                "category": "custom",
+                "price": 68000,
+                "cilindrada": 883
+            }
+        ]
+    },
+    {
+        "id": 77,
+        "name": "Marcelo Silva",
+        "age": 25,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 1,
+                "name": "Honda Biz 125",
+                "category": "scooter",
+                "price": 11500,
+                "cilindrada": 125
+            }
+        ]
+    },
+    {
+        "id": 78,
+        "name": "Priscila Teixeira",
+        "age": 25,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 17,
+                "name": "Yamaha R7",
+                "category": "esportiva",
+                "price": 62000,
+                "cilindrada": 689
+            }
+        ]
+    },
+    {
+        "id": 79,
+        "name": "Leandro Mendes",
+        "age": 49,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 80,
+        "name": "Alexandre Vieira",
+        "age": 18,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 19,
+                "name": "Kawasaki Ninja ZX-10R",
+                "category": "esportiva",
+                "price": 145000,
+                "cilindrada": 998
+            },
+            {
+                "id": 20,
+                "name": "BMW S 1000 RR",
+                "category": "esportiva",
+                "price": 175000,
+                "cilindrada": 999
+            },
+            {
+                "id": 17,
+                "name": "Yamaha R7",
+                "category": "esportiva",
+                "price": 62000,
+                "cilindrada": 689
+            }
+        ]
+    },
+    {
+        "id": 81,
+        "name": "Rodrigo Araújo",
+        "age": 31,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 82,
+        "name": "Letícia Costa",
+        "age": 25,
+        "gender": "feminino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 83,
+        "name": "Igor Oliveira",
+        "age": 45,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 27,
+                "name": "Yamaha Lander 250",
+                "category": "trail",
+                "price": 27000,
+                "cilindrada": 249
+            },
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 84,
+        "name": "Mariana Cardoso",
+        "age": 55,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 20,
+                "name": "BMW S 1000 RR",
+                "category": "esportiva",
+                "price": 175000,
+                "cilindrada": 999
+            },
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            },
+            {
+                "id": 18,
+                "name": "Honda CBR 650R",
+                "category": "esportiva",
+                "price": 65000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 85,
+        "name": "Kleber Martins",
+        "age": 46,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 27,
+                "name": "Yamaha Lander 250",
+                "category": "trail",
+                "price": 27000,
+                "cilindrada": 249
+            }
+        ]
+    },
+    {
+        "id": 86,
+        "name": "Olívia Moreira",
+        "age": 38,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 31,
+                "name": "Yamaha Ténéré 700",
+                "category": "big trail",
+                "price": 75000,
+                "cilindrada": 689
+            },
+            {
+                "id": 34,
+                "name": "BMW R 1300 GS",
+                "category": "big trail",
+                "price": 145000,
+                "cilindrada": 1300
+            },
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            }
+        ]
+    },
+    {
+        "id": 87,
+        "name": "Leandro Lima",
+        "age": 60,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 11,
+                "name": "Yamaha MT-07",
+                "category": "naked",
+                "price": 52000,
+                "cilindrada": 689
+            },
+            {
+                "id": 12,
+                "name": "Honda CB 650R",
+                "category": "naked",
+                "price": 62000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 88,
+        "name": "Natália Lima",
+        "age": 20,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            }
+        ]
+    },
+    {
+        "id": 89,
+        "name": "Helena Santos",
+        "age": 24,
+        "gender": "feminino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 90,
+        "name": "Sérgio Gomes",
+        "age": 47,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 27,
+                "name": "Yamaha Lander 250",
+                "category": "trail",
+                "price": 27000,
+                "cilindrada": 249
+            },
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            },
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            }
+        ]
+    },
+    {
+        "id": 91,
+        "name": "Igor Rocha",
+        "age": 29,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 92,
+        "name": "Letícia Fernandes",
+        "age": 43,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 29,
+                "name": "Royal Enfield Himalayan 450",
+                "category": "big trail",
+                "price": 42000,
+                "cilindrada": 452
+            }
+        ]
+    },
+    {
+        "id": 93,
+        "name": "Daniela Dias",
+        "age": 19,
+        "gender": "feminino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 94,
+        "name": "Otávio Dias",
+        "age": 24,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 19,
+                "name": "Kawasaki Ninja ZX-10R",
+                "category": "esportiva",
+                "price": 145000,
+                "cilindrada": 998
+            },
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            },
+            {
+                "id": 18,
+                "name": "Honda CBR 650R",
+                "category": "esportiva",
+                "price": 65000,
+                "cilindrada": 649
+            },
+            {
+                "id": 31,
+                "name": "Yamaha Ténéré 700",
+                "category": "big trail",
+                "price": 75000,
+                "cilindrada": 689
+            }
+        ]
+    },
+    {
+        "id": 95,
+        "name": "Isabela Correia",
+        "age": 33,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 17,
+                "name": "Yamaha R7",
+                "category": "esportiva",
+                "price": 62000,
+                "cilindrada": 689
+            },
+            {
+                "id": 12,
+                "name": "Honda CB 650R",
+                "category": "naked",
+                "price": 62000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 96,
+        "name": "Caio Teixeira",
+        "age": 39,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 36,
+                "name": "Yamaha Tracer 7",
+                "category": "touring",
+                "price": 58000,
+                "cilindrada": 689
+            },
+            {
+                "id": 39,
+                "name": "Honda Gold Wing",
+                "category": "touring",
+                "price": 280000,
+                "cilindrada": 1833
+            }
+        ]
+    },
+    {
+        "id": 97,
+        "name": "Bruno Lima",
+        "age": 35,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 17,
+                "name": "Yamaha R7",
+                "category": "esportiva",
+                "price": 62000,
+                "cilindrada": 689
+            },
+            {
+                "id": 15,
+                "name": "Yamaha R3",
+                "category": "esportiva",
+                "price": 36000,
+                "cilindrada": 321
+            },
+            {
+                "id": 10,
+                "name": "Kawasaki Z400",
+                "category": "naked",
+                "price": 39000,
+                "cilindrada": 399
+            }
+        ]
+    },
+    {
+        "id": 98,
+        "name": "Juliana Alves",
+        "age": 55,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 36,
+                "name": "Yamaha Tracer 7",
+                "category": "touring",
+                "price": 58000,
+                "cilindrada": 689
+            },
+            {
+                "id": 35,
+                "name": "Kawasaki Versys 650",
+                "category": "touring",
+                "price": 55000,
+                "cilindrada": 649
+            },
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            }
+        ]
+    },
+    {
+        "id": 99,
+        "name": "Olívia Almeida",
+        "age": 30,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
+            }
+        ]
+    },
+    {
+        "id": 100,
+        "name": "Juliana Ferreira",
+        "age": 49,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 101,
+        "name": "Ana Almeida",
+        "age": 26,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 5,
+                "name": "Honda CG 160 Start",
+                "category": "street",
+                "price": 14500,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 102,
+        "name": "Leandro Araújo",
+        "age": 38,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            }
+        ]
+    },
+    {
+        "id": 103,
+        "name": "Henrique Cardoso",
+        "age": 30,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": []
+    },
+    {
+        "id": 104,
+        "name": "Débora Freitas",
+        "age": 30,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            },
+            {
+                "id": 9,
+                "name": "Yamaha MT-03",
+                "category": "naked",
+                "price": 33000,
+                "cilindrada": 321
+            },
+            {
+                "id": 29,
+                "name": "Royal Enfield Himalayan 450",
+                "category": "big trail",
+                "price": 42000,
+                "cilindrada": 452
+            }
+        ]
+    },
+    {
+        "id": 105,
+        "name": "Wesley Dias",
+        "age": 50,
+        "gender": "masculino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 35,
+                "name": "Kawasaki Versys 650",
+                "category": "touring",
+                "price": 55000,
+                "cilindrada": 649
+            },
+            {
+                "id": 38,
+                "name": "Harley-Davidson Road Glide",
+                "category": "touring",
+                "price": 210000,
+                "cilindrada": 1923
+            }
+        ]
+    },
+    {
+        "id": 106,
+        "name": "Débora Cardoso",
+        "age": 50,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 38,
+                "name": "Harley-Davidson Road Glide",
+                "category": "touring",
+                "price": 210000,
+                "cilindrada": 1923
+            },
+            {
+                "id": 24,
+                "name": "Indian Scout",
+                "category": "custom",
+                "price": 110000,
+                "cilindrada": 1133
+            },
+            {
+                "id": 36,
+                "name": "Yamaha Tracer 7",
+                "category": "touring",
+                "price": 58000,
+                "cilindrada": 689
+            },
+            {
+                "id": 39,
+                "name": "Honda Gold Wing",
+                "category": "touring",
+                "price": 280000,
+                "cilindrada": 1833
+            }
+        ]
+    },
+    {
+        "id": 107,
+        "name": "Elaine Lima",
+        "age": 18,
+        "gender": "feminino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 108,
+        "name": "Karina Gomes",
+        "age": 25,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 10,
+                "name": "Kawasaki Z400",
+                "category": "naked",
+                "price": 39000,
+                "cilindrada": 399
+            },
+            {
+                "id": 12,
+                "name": "Honda CB 650R",
+                "category": "naked",
+                "price": 62000,
+                "cilindrada": 649
+            },
+            {
+                "id": 25,
+                "name": "Harley-Davidson Fat Boy",
+                "category": "custom",
+                "price": 145000,
+                "cilindrada": 1868
+            }
+        ]
+    },
+    {
+        "id": 109,
+        "name": "Helena Pereira",
+        "age": 42,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 35,
+                "name": "Kawasaki Versys 650",
+                "category": "touring",
+                "price": 55000,
+                "cilindrada": 649
+            },
+            {
+                "id": 39,
+                "name": "Honda Gold Wing",
+                "category": "touring",
+                "price": 280000,
+                "cilindrada": 1833
+            }
+        ]
+    },
+    {
+        "id": 110,
+        "name": "Flávia Santos",
+        "age": 26,
+        "gender": "feminino",
+        "financialStatus": "alta",
+        "purchases": [
+            {
+                "id": 15,
+                "name": "Yamaha R3",
+                "category": "esportiva",
+                "price": 36000,
+                "cilindrada": 321
+            },
+            {
+                "id": 20,
+                "name": "BMW S 1000 RR",
+                "category": "esportiva",
+                "price": 175000,
+                "cilindrada": 999
+            },
+            {
+                "id": 16,
+                "name": "Kawasaki Ninja 400",
+                "category": "esportiva",
+                "price": 42000,
+                "cilindrada": 399
+            }
+        ]
+    },
+    {
+        "id": 111,
+        "name": "Tiago Correia",
+        "age": 21,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 112,
+        "name": "Henrique Rocha",
+        "age": 30,
+        "gender": "masculino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 113,
+        "name": "Vanessa Souza",
+        "age": 19,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 26,
+                "name": "Honda NXR 160 Bros",
+                "category": "trail",
+                "price": 20000,
+                "cilindrada": 162
+            }
+        ]
+    },
+    {
+        "id": 114,
+        "name": "Marcelo Costa",
+        "age": 31,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 3,
+                "name": "Yamaha NMax 160",
+                "category": "scooter",
+                "price": 21000,
+                "cilindrada": 155
+            }
+        ]
+    },
+    {
+        "id": 115,
+        "name": "Igor Alves",
+        "age": 42,
+        "gender": "masculino",
+        "financialStatus": "muito_baixa",
+        "purchases": []
+    },
+    {
+        "id": 116,
+        "name": "Vanessa Alves",
+        "age": 69,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 28,
+                "name": "Honda XRE 300 Sahara",
+                "category": "trail",
+                "price": 32000,
+                "cilindrada": 291
+            }
+        ]
+    },
+    {
+        "id": 117,
+        "name": "Vanessa Fernandes",
+        "age": 28,
+        "gender": "feminino",
+        "financialStatus": "baixa",
+        "purchases": [
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            }
+        ]
+    },
+    {
+        "id": 118,
+        "name": "Kleber Pereira",
+        "age": 29,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 12,
+                "name": "Honda CB 650R",
+                "category": "naked",
+                "price": 62000,
+                "cilindrada": 649
+            }
+        ]
+    },
+    {
+        "id": 119,
+        "name": "Vinícius Carvalho",
+        "age": 18,
+        "gender": "masculino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 2,
+                "name": "Honda PCX 160",
+                "category": "scooter",
+                "price": 19500,
+                "cilindrada": 156
+            },
+            {
+                "id": 7,
+                "name": "Yamaha Factor 150",
+                "category": "street",
+                "price": 17000,
+                "cilindrada": 149
+            }
+        ]
+    },
+    {
+        "id": 120,
+        "name": "Tatiane Ribeiro",
+        "age": 28,
+        "gender": "feminino",
+        "financialStatus": "media",
+        "purchases": [
+            {
+                "id": 30,
+                "name": "Honda NC 750X",
+                "category": "big trail",
+                "price": 58000,
+                "cilindrada": 745
+            },
+            {
+                "id": 27,
+                "name": "Yamaha Lander 250",
+                "category": "trail",
+                "price": 27000,
+                "cilindrada": 249
             }
         ]
     }

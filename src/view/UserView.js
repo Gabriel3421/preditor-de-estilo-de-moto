@@ -1,14 +1,16 @@
 import { View } from './View.js';
+import { financialLabels, genderLabels, formatBRL } from './labels.js';
 
 export class UserView extends View {
     #userSelect = document.querySelector('#userSelect');
     #userAge = document.querySelector('#userAge');
-    #pastPurchasesList = document.querySelector('#pastPurchasesList');
+    #userGender = document.querySelector('#userGender');
+    #userFinancial = document.querySelector('#userFinancial');
+    #garageList = document.querySelector('#pastPurchasesList');
 
-    #purchaseTemplate;
+    #garageTemplate;
     #onUserSelect;
-    #onPurchaseRemove;
-    #pastPurchaseElements = [];
+    #onGarageRemove;
 
     constructor() {
         super();
@@ -16,7 +18,7 @@ export class UserView extends View {
     }
 
     async init() {
-        this.#purchaseTemplate = await this.loadTemplate('./src/view/templates/past-purchase.html');
+        this.#garageTemplate = await this.loadTemplate('./src/view/templates/garage-item.html');
         this.attachUserSelectListener();
     }
 
@@ -25,93 +27,107 @@ export class UserView extends View {
     }
 
     registerPurchaseRemoveCallback(callback) {
-        this.#onPurchaseRemove = callback;
+        this.#onGarageRemove = callback;
     }
 
+    /**
+     * Convidados (sem moto) vão para um grupo separado no topo — são os
+     * perfis de teste. A massa de treino fica no grupo de baixo.
+     */
     renderUserOptions(users) {
-        const options = users.map(user => {
-            return `<option value="${user.id}">${user.name}</option>`;
-        }).join('');
+        const guests = users.filter(user => !user.purchases.length);
+        const trained = users.filter(user => user.purchases.length);
 
-        this.#userSelect.innerHTML += options;
+        const option = user =>
+            `<option value="${user.id}">${user.name} — ${user.age} anos, ${financialLabels[user.financialStatus]}</option>`;
+
+        this.#userSelect.innerHTML = `
+            <option value="">-- Escolha uma pessoa --</option>
+            <optgroup label="Convidados (sem moto — para prever)">
+                ${guests.map(option).join('')}
+            </optgroup>
+            <optgroup label="Massa de treino (já tem moto)">
+                ${trained.map(option).join('')}
+            </optgroup>
+        `;
     }
 
     renderUserDetails(user) {
         this.#userAge.value = user.age;
+        this.#userGender.value = genderLabels[user.gender] ?? '—';
+        this.#userFinancial.value = financialLabels[user.financialStatus] ?? '—';
     }
 
-    renderPastPurchases(pastPurchases) {
-        if (!this.#purchaseTemplate) return;
+    clearUserDetails() {
+        this.#userAge.value = '';
+        this.#userGender.value = '';
+        this.#userFinancial.value = '';
+        this.#garageList.innerHTML = '';
+    }
 
-        if (!pastPurchases || pastPurchases.length === 0) {
-            this.#pastPurchasesList.innerHTML = '<p>No past purchases found.</p>';
+    renderGarage(motos) {
+        if (!this.#garageTemplate) return;
+
+        if (!motos || motos.length === 0) {
+            this.#garageList.innerHTML =
+                '<p class="text-muted small mb-0">Garagem vazia — é justamente aqui que o modelo tem que adivinhar.</p>';
             return;
         }
 
-        const html = pastPurchases.map(product => {
-            return this.replaceTemplate(this.#purchaseTemplate, {
-                ...product,
-                product: JSON.stringify(product)
-            });
-        }).join('');
-
-        this.#pastPurchasesList.innerHTML = html;
-        this.attachPurchaseClickHandlers();
+        this.#garageList.innerHTML = motos.map(moto => this.#garageItem(moto)).join('');
+        this.attachGarageClickHandlers();
     }
 
-    addPastPurchase(product) {
-
-        if (this.#pastPurchasesList.innerHTML.includes('No past purchases found')) {
-            this.#pastPurchasesList.innerHTML = '';
+    addToGarage(moto) {
+        if (this.#garageList.textContent.includes('Garagem vazia')) {
+            this.#garageList.innerHTML = '';
         }
 
-        const purchaseHtml = this.replaceTemplate(this.#purchaseTemplate, {
-            ...product,
-            product: JSON.stringify(product)
-        });
+        this.#garageList.insertAdjacentHTML('afterbegin', this.#garageItem(moto));
 
-        this.#pastPurchasesList.insertAdjacentHTML('afterbegin', purchaseHtml);
-
-        const newPurchase = this.#pastPurchasesList.firstElementChild.querySelector('.past-purchase');
-        newPurchase.classList.add('past-purchase-highlight');
+        const added = this.#garageList.firstElementChild.querySelector('.past-purchase');
+        added.classList.add('past-purchase-highlight');
 
         setTimeout(() => {
-            newPurchase.classList.remove('past-purchase-highlight');
+            added.classList.remove('past-purchase-highlight');
         }, 1000);
 
-        this.attachPurchaseClickHandlers();
+        this.attachGarageClickHandlers();
+    }
+
+    #garageItem(moto) {
+        return this.replaceTemplate(this.#garageTemplate, {
+            name: moto.name,
+            category: moto.category,
+            cilindrada: moto.cilindrada,
+            price: formatBRL(moto.price),
+            product: JSON.stringify(moto),
+        });
     }
 
     attachUserSelectListener() {
         this.#userSelect.addEventListener('change', (event) => {
             const userId = event.target.value ? Number(event.target.value) : null;
 
-            if (userId) {
-                if (this.#onUserSelect) {
-                    this.#onUserSelect(userId);
-                }
-            } else {
-                this.#userAge.value = '';
-                this.#pastPurchasesList.innerHTML = '';
+            if (!userId) {
+                this.clearUserDetails();
+                return;
+            }
+
+            if (this.#onUserSelect) {
+                this.#onUserSelect(userId);
             }
         });
     }
 
-    attachPurchaseClickHandlers() {
-        this.#pastPurchaseElements = [];
-
-        const purchaseElements = document.querySelectorAll('.past-purchase');
-
-        purchaseElements.forEach(purchaseElement => {
-            this.#pastPurchaseElements.push(purchaseElement);
-
-            purchaseElement.onclick = (event) => {
-
-                const product = JSON.parse(purchaseElement.dataset.product);
+    attachGarageClickHandlers() {
+        document.querySelectorAll('.past-purchase').forEach(item => {
+            item.onclick = () => {
+                const moto = JSON.parse(item.dataset.product);
                 const userId = this.getSelectedUserId();
-                const element = purchaseElement.closest('.col-md-6');
+                const element = item.closest('.col-md-12');
 
-                this.#onPurchaseRemove({ element, userId, product });
+                this.#onGarageRemove({ element, userId, product: moto });
 
                 element.style.transition = 'opacity 0.5s ease';
                 element.style.opacity = '0';
@@ -120,12 +136,10 @@ export class UserView extends View {
                     element.remove();
 
                     if (document.querySelectorAll('.past-purchase').length === 0) {
-                        this.renderPastPurchases([]);
+                        this.renderGarage([]);
                     }
-
                 }, 500);
-
-            }
+            };
         });
     }
 

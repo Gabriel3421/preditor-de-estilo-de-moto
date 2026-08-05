@@ -2,11 +2,8 @@ export class UserController {
     #userService;
     #userView;
     #events;
-    constructor({
-        userView,
-        userService,
-        events,
-    }) {
+
+    constructor({ userView, userService, events }) {
         this.#userView = userView;
         this.#userService = userService;
         this.#events = events;
@@ -16,72 +13,55 @@ export class UserController {
         return new UserController(deps);
     }
 
-    async renderUsers(nonTrainedUser) {
-        const users = await this.#userService.getDefaultUsers();
-
-        this.#userService.addUser(nonTrainedUser);
-        const defaultAndNonTrained = [nonTrainedUser, ...users];
-
-        this.#userView.renderUserOptions(defaultAndNonTrained);
+    async renderUsers(users) {
+        this.#userView.renderUserOptions(users);
         this.setupCallbacks();
-        this.setupPurchaseObserver();
+        this.setupGarageObserver();
 
-        this.#events.dispatchUsersUpdated({ users: defaultAndNonTrained });
-
+        this.#events.dispatchUsersUpdated({ users });
     }
 
     setupCallbacks() {
         this.#userView.registerUserSelectCallback(this.handleUserSelect.bind(this));
-        this.#userView.registerPurchaseRemoveCallback(this.handlePurchaseRemove.bind(this));
+        this.#userView.registerPurchaseRemoveCallback(this.handleGarageRemove.bind(this));
     }
 
-    setupPurchaseObserver() {
-
-        this.#events.onPurchaseAdded(
-            async (...data) => {
-                return this.handlePurchaseAdded(...data);
-            }
-        );
-
+    setupGarageObserver() {
+        this.#events.onPurchaseAdded(async (...data) => this.handleGarageAdd(...data));
     }
 
     async handleUserSelect(userId) {
         const user = await this.#userService.getUserById(userId);
+
         this.#events.dispatchUserSelected(user);
-        return this.displayUserDetails(user);
+
+        this.#userView.renderUserDetails(user);
+        this.#userView.renderGarage(user.purchases);
     }
 
-    async handlePurchaseAdded({ user, product }) {
+    async handleGarageAdd({ user, product }) {
         const updatedUser = await this.#userService.getUserById(user.id);
-        updatedUser.purchases.push({
-            ...product
-        })
 
+        // não deixa a mesma moto entrar duas vezes na garagem
+        if (updatedUser.purchases.some(moto => moto.id === product.id)) return;
+
+        updatedUser.purchases.push({ ...product });
         await this.#userService.updateUser(updatedUser);
 
-        const lastPurchase = updatedUser.purchases[updatedUser.purchases.length - 1];
-        this.#userView.addPastPurchase(lastPurchase);
+        this.#userView.addToGarage(product);
         this.#events.dispatchUsersUpdated({ users: await this.#userService.getUsers() });
     }
 
-    async handlePurchaseRemove({ userId, product }) {
+    async handleGarageRemove({ userId, product }) {
         const user = await this.#userService.getUserById(userId);
-        const index = user.purchases.findIndex(item => item.id === product.id);
+        const index = user.purchases.findIndex(moto => moto.id === product.id);
 
-        if (index !== -1) {
-            user.purchases.splice(index, 1); // directly remove one item at the found index
-            await this.#userService.updateUser(user);
+        if (index === -1) return;
 
-            const updatedUsers = await this.#userService.getUsers();
-            this.#events.dispatchUsersUpdated({ users: updatedUsers });
-        }
-    }
+        user.purchases.splice(index, 1);
+        await this.#userService.updateUser(user);
 
-
-    async displayUserDetails(user) {
-        this.#userView.renderUserDetails(user);
-        this.#userView.renderPastPurchases(user.purchases);
-
+        this.#events.dispatchUsersUpdated({ users: await this.#userService.getUsers() });
     }
 
     getSelectedUserId() {

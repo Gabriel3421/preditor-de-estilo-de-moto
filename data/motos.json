@@ -1,0 +1,275 @@
+[
+    {
+        "id": 1,
+        "name": "Honda Biz 125",
+        "category": "scooter",
+        "price": 11500,
+        "cilindrada": 125
+    },
+    {
+        "id": 2,
+        "name": "Honda PCX 160",
+        "category": "scooter",
+        "price": 19500,
+        "cilindrada": 156
+    },
+    {
+        "id": 3,
+        "name": "Yamaha NMax 160",
+        "category": "scooter",
+        "price": 21000,
+        "cilindrada": 155
+    },
+    {
+        "id": 4,
+        "name": "Honda ADV 350",
+        "category": "scooter",
+        "price": 39000,
+        "cilindrada": 330
+    },
+    {
+        "id": 5,
+        "name": "Honda CG 160 Start",
+        "category": "street",
+        "price": 14500,
+        "cilindrada": 162
+    },
+    {
+        "id": 6,
+        "name": "Honda CG 160 Titan",
+        "category": "street",
+        "price": 16500,
+        "cilindrada": 162
+    },
+    {
+        "id": 7,
+        "name": "Yamaha Factor 150",
+        "category": "street",
+        "price": 17000,
+        "cilindrada": 149
+    },
+    {
+        "id": 8,
+        "name": "Honda CB 300F Twister",
+        "category": "street",
+        "price": 24000,
+        "cilindrada": 293
+    },
+    {
+        "id": 9,
+        "name": "Yamaha MT-03",
+        "category": "naked",
+        "price": 33000,
+        "cilindrada": 321
+    },
+    {
+        "id": 10,
+        "name": "Kawasaki Z400",
+        "category": "naked",
+        "price": 39000,
+        "cilindrada": 399
+    },
+    {
+        "id": 11,
+        "name": "Yamaha MT-07",
+        "category": "naked",
+        "price": 52000,
+        "cilindrada": 689
+    },
+    {
+        "id": 12,
+        "name": "Honda CB 650R",
+        "category": "naked",
+        "price": 62000,
+        "cilindrada": 649
+    },
+    {
+        "id": 13,
+        "name": "Kawasaki Z900",
+        "category": "naked",
+        "price": 75000,
+        "cilindrada": 948
+    },
+    {
+        "id": 14,
+        "name": "Ducati Monster",
+        "category": "naked",
+        "price": 95000,
+        "cilindrada": 937
+    },
+    {
+        "id": 15,
+        "name": "Yamaha R3",
+        "category": "esportiva",
+        "price": 36000,
+        "cilindrada": 321
+    },
+    {
+        "id": 16,
+        "name": "Kawasaki Ninja 400",
+        "category": "esportiva",
+        "price": 42000,
+        "cilindrada": 399
+    },
+    {
+        "id": 17,
+        "name": "Yamaha R7",
+        "category": "esportiva",
+        "price": 62000,
+        "cilindrada": 689
+    },
+    {
+        "id": 18,
+        "name": "Honda CBR 650R",
+        "category": "esportiva",
+        "price": 65000,
+        "cilindrada": 649
+    },
+    {
+        "id": 19,
+        "name": "Kawasaki Ninja ZX-10R",
+        "category": "esportiva",
+        "price": 145000,
+        "cilindrada": 998
+    },
+    {
+        "id": 20,
+        "name": "BMW S 1000 RR",
+        "category": "esportiva",
+        "price": 175000,
+        "cilindrada": 999
+    },
+    {
+        "id": 21,
+        "name": "Haojue Chopper Road 150",
+        "category": "custom",
+        "price": 16000,
+        "cilindrada": 150
+    },
+    {
+        "id": 22,
+        "name": "Royal Enfield Meteor 350",
+        "category": "custom",
+        "price": 32000,
+        "cilindrada": 349
+    },
+    {
+        "id": 23,
+        "name": "Harley-Davidson Iron 883",
+        "category": "custom",
+        "price": 68000,
+        "cilindrada": 883
+    },
+    {
+        "id": 24,
+        "name": "Indian Scout",
+        "category": "custom",
+        "price": 110000,
+        "cilindrada": 1133
+    },
+    {
+        "id": 25,
+        "name": "Harley-Davidson Fat Boy",
+        "category": "custom",
+        "price": 145000,
+        "cilindrada": 1868
+    },
+    {
+        "id": 26,
+        "name": "Honda NXR 160 Bros",
+        "category": "trail",
+        "price": 20000,
+        "cilindrada": 162
+    },
+    {
+        "id": 27,
+        "name": "Yamaha Lander 250",
+        "category": "trail",
+        "price": 27000,
+        "cilindrada": 249
+    },
+    {
+        "id": 28,
+        "name": "Honda XRE 300 Sahara",
+        "category": "trail",
+        "price": 32000,
+        "cilindrada": 291
+    },
+    {
+        "id": 29,
+        "name": "Royal Enfield Himalayan 450",
+        "category": "big trail",
+        "price": 42000,
+        "cilindrada": 452
+    },
+    {
+        "id": 30,
+        "name": "Honda NC 750X",
+        "category": "big trail",
+        "price": 58000,
+        "cilindrada": 745
+    },
+    {
+        "id": 31,
+        "name": "Yamaha Ténéré 700",
+        "category": "big trail",
+        "price": 75000,
+        "cilindrada": 689
+    },
+    {
+        "id": 32,
+        "name": "BMW F 850 GS",
+        "category": "big trail",
+        "price": 92000,
+        "cilindrada": 853
+    },
+    {
+        "id": 33,
+        "name": "Honda Africa Twin",
+        "category": "big trail",
+        "price": 120000,
+        "cilindrada": 1084
+    },
+    {
+        "id": 34,
+        "name": "BMW R 1300 GS",
+        "category": "big trail",
+        "price": 145000,
+        "cilindrada": 1300
+    },
+    {
+        "id": 35,
+        "name": "Kawasaki Versys 650",
+        "category": "touring",
+        "price": 55000,
+        "cilindrada": 649
+    },
+    {
+        "id": 36,
+        "name": "Yamaha Tracer 7",
+        "category": "touring",
+        "price": 58000,
+        "cilindrada": 689
+    },
+    {
+        "id": 37,
+        "name": "BMW R 1250 RT",
+        "category": "touring",
+        "price": 160000,
+        "cilindrada": 1254
+    },
+    {
+        "id": 38,
+        "name": "Harley-Davidson Road Glide",
+        "category": "touring",
+        "price": 210000,
+        "cilindrada": 1923
+    },
+    {
+        "id": 39,
+        "name": "Honda Gold Wing",
+        "category": "touring",
+        "price": 280000,
+        "cilindrada": 1833
+    }
+]
