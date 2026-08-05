@@ -39,6 +39,15 @@ const WEIGHTS = {
 // motos caríssimas seria punido injustamente para quem tem renda baixa.
 const STYLE_TOP_N = 3;
 
+// 🎯 NEGATIVE SAMPLING — quantas motos que a pessoa NÃO tem entram no treino
+// para cada moto que ela tem. Ver o comentário em createTrainingData.
+//
+// Knob para brincar:
+//   k = 4  → 20% de positivos  (recomendado)
+//   k = 9  → 10% de positivos
+//   k = 40 → praticamente o catálogo inteiro, volta o desbalanceamento
+const NEGATIVES_PER_POSITIVE = 4;
+
 // 🔢 Normaliza valores contínuos (preço, idade, cilindrada) para 0–1.
 // Por quê? Mantém as features equilibradas para nenhuma dominar o treino.
 // Fórmula: (val - min) / (max - min)
@@ -170,30 +179,91 @@ function encodeMoto(moto, context) {
     return tf.concat1d([price, cilindrada, ownerAge, category]);
 }
 
+/**
+ * Sorteia `count` itens distintos de `pool`, sem repetição.
+ *
+ * Fisher-Yates parcial: embaralha só os primeiros `count` lugares em vez do
+ * array inteiro. Para um pool de ~37 motos tanto faz, mas é o jeito certo de
+ * escrever e não fica mais complicado que o errado.
+ */
+function sampleWithoutReplacement(pool, count) {
+    const items = [...pool];
+    const size = Math.min(count, items.length);
+
+    for (let i = 0; i < size; i++) {
+        const j = i + Math.floor(Math.random() * (items.length - i));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+
+    return items.slice(0, size);
+}
+
 // ====================================================================
-// 🏗️ Montagem dos exemplos de treino
+// 🏗️ Montagem dos exemplos de treino — com NEGATIVE SAMPLING
 // --------------------------------------------------------------------
-// Para cada pessoa que TEM moto, cruzamos o perfil dela com TODAS as motos
-// do catálogo. Rótulo 1 se a moto está na garagem, 0 caso contrário.
+// A versão ingênua cruza cada pessoa com o catálogo INTEIRO: 91 pessoas ×
+// 39 motos = 3.549 pares, dos quais só 175 são positivos (4,9%).
 //
-// ⚠️ É exatamente aqui que mora o problema de desbalanceamento: com 39 motos
-// e ~2 por garagem, sobram ~5% de rótulos 1 contra ~95% de rótulos 0.
+// Com esse desbalanceamento a rede encontra um atalho e para por ali:
+// respondendo "não" para tudo ela já acerta 95,1% e chega a uma loss de
+// ~0,20. Curvas lindas no tfjs-vis, modelo inútil. Pior: com batch de 32,
+// uma em cada cinco batches não tem NENHUM positivo — nesses passos o único
+// gradiente que existe diz "empurra tudo para zero", sem contraste algum
+// para aprender.
+//
+// A saída é não usar todos os negativos. Para cada moto que a pessoa tem,
+// sorteamos NEGATIVES_PER_POSITIVE motos que ela não tem.
+//
+// Por que isso é legítimo: os zeros não são fatos observados. "Ana não tem
+// uma Gold Wing" não quer dizer "Ana rejeitou a Gold Wing" — é ausência de
+// informação (implicit feedback). O conjunto de negativos é presumido e
+// essencialmente infinito: cadastrar mais 5.000 motos geraria mais 5.000
+// negativos por pessoa e zero informação nova. O que a rede precisa é do
+// CONTRASTE entre o que a pessoa tem e uma amostra do que ela não tem — e
+// uma amostra carrega esse contraste tão bem quanto o conjunto todo.
+//
+// O preço: o score de saída deixa de ser probabilidade calibrada (treinando
+// com 20% de positivos num mundo de 4,9%, o modelo superestima). Não nos
+// afeta porque só usamos a ORDEM dos scores e a média por estilo, e a
+// subamostragem uniforme desloca todos eles pela mesma transformação
+// monotônica. Se um dia precisar da probabilidade real, subtraia log(k) do
+// logit antes da sigmoid.
+//
+// Variação que vale testar: em vez de sortear uniforme, enviesar por
+// popularidade (sortear mais as motos que muita gente tem). Deixa a tarefa
+// mais difícil e costuma render um modelo melhor.
 // ====================================================================
 function createTrainingData(context) {
     const inputs = [];
     const labels = [];
 
-    context.users
-        .filter(user => user.purchases.length)
-        .forEach(user => {
-            const userVector = encodeUser(user, context).dataSync();
-            const ownedIds = new Set(user.purchases.map(moto => moto.id));
+    const trainable = context.users.filter(user => user.purchases.length);
 
-            context.motoVectors.forEach(({ id, vector }) => {
-                inputs.push([...userVector, ...vector]);
-                labels.push(ownedIds.has(id) ? 1 : 0);
-            });
+    trainable.forEach(user => {
+        const userVector = encodeUser(user, context).dataSync();
+        const ownedIds = new Set(user.purchases.map(moto => moto.id));
+
+        // casamos pelo catálogo, não pelo snapshot guardado na garagem
+        const owned = context.motoVectors.filter(moto => ownedIds.has(moto.id));
+        const notOwned = context.motoVectors.filter(moto => !ownedIds.has(moto.id));
+
+        // ⚠️ o pool exclui o que a pessoa tem: sortear de lá rotularia um
+        // positivo como negativo e ensinaria exatamente o contrário
+        const negatives = sampleWithoutReplacement(
+            notOwned,
+            owned.length * NEGATIVES_PER_POSITIVE
+        );
+
+        owned.forEach(({ vector }) => {
+            inputs.push([...userVector, ...vector]);
+            labels.push(1);
         });
+
+        negatives.forEach(({ vector }) => {
+            inputs.push([...userVector, ...vector]);
+            labels.push(0);
+        });
+    });
 
     const positives = labels.reduce((total, label) => total + label, 0);
 
@@ -204,6 +274,8 @@ function createTrainingData(context) {
         inputDimention: context.userDimensions + context.motoDimensions,
         positives,
         total: labels.length,
+        // quanto seria sem sampling, só para o painel mostrar a diferença
+        allPairs: trainable.length * context.motoVectors.length,
     };
 }
 
@@ -307,9 +379,11 @@ async function trainModel({ users }) {
             people: users.length,
             peopleWithMotos: users.filter(user => user.purchases.length).length,
             motos: motos.length,
+            allPairs: trainData.allPairs,
             pairs: trainData.total,
             positives: trainData.positives,
             positiveRate: trainData.positives / trainData.total,
+            negativesPerPositive: NEGATIVES_PER_POSITIVE,
             accuracy: lastAccuracy,
             loss: lastLoss,
         }

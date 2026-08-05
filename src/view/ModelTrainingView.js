@@ -55,14 +55,22 @@ export class ModelView extends View {
     }
 
     /**
-     * Diagnóstico do treino. A taxa de rótulos positivos é a métrica que
-     * explica quase tudo: se ela é de ~5%, uma accuracy de 95% significa
-     * apenas que o modelo aprendeu a responder "não" para tudo.
+     * Diagnóstico do treino.
+     *
+     * A accuracy nunca aparece sozinha: ao lado dela fica sempre a acurácia do
+     * "chute burro" — um modelo que responde não para tudo. A diferença entre
+     * as duas é o único número que diz se a rede aprendeu alguma coisa.
      */
     renderTrainingStats(stats) {
         if (!stats) return;
 
+        const accuracy = stats.accuracy ?? 0;
+        const baseline = 1 - stats.positiveRate;   // acertos de quem chuta "não" sempre
+        const gain = accuracy - baseline;
+
         const imbalanced = stats.positiveRate < 0.15;
+        const sampled = stats.allPairs > stats.pairs;
+        const gainTone = gain > 0.05 ? 'table-success' : gain > 0 ? '' : 'table-danger';
 
         this.#trainingStats.innerHTML = `
             <table class="table table-sm training-stats mb-1">
@@ -70,12 +78,23 @@ export class ModelView extends View {
                     <tr><td>Pessoas na massa</td><td>${stats.people}</td></tr>
                     <tr><td>Com moto (viram treino)</td><td>${stats.peopleWithMotos}</td></tr>
                     <tr><td>Motos no catálogo</td><td>${stats.motos}</td></tr>
-                    <tr><td>Pares pessoa × moto</td><td>${stats.pairs.toLocaleString('pt-BR')}</td></tr>
+
+                    <tr class="section"><td>Pares possíveis</td><td>${stats.allPairs.toLocaleString('pt-BR')}</td></tr>
+                    <tr>
+                        <td>Exemplos usados${sampled ? ` <span class="text-muted">(${stats.negativesPerPositive} neg./pos.)</span>` : ''}</td>
+                        <td>${stats.pairs.toLocaleString('pt-BR')}</td>
+                    </tr>
                     <tr class="${imbalanced ? 'table-danger' : ''}">
                         <td>Rótulos positivos</td>
                         <td>${stats.positives} <span class="text-muted">(${formatPercent(stats.positiveRate, 1)})</span></td>
                     </tr>
-                    <tr><td>Accuracy final</td><td>${formatPercent(stats.accuracy ?? 0, 1)}</td></tr>
+
+                    <tr class="section"><td>Accuracy final</td><td>${formatPercent(accuracy, 1)}</td></tr>
+                    <tr><td>Chute burro ("não" em tudo)</td><td>${formatPercent(baseline, 1)}</td></tr>
+                    <tr class="${gainTone}">
+                        <td>Ganho sobre o chute</td>
+                        <td>${gain >= 0 ? '+' : ''}${(gain * 100).toFixed(1)} pp</td>
+                    </tr>
                     <tr><td>Loss final</td><td>${(stats.loss ?? 0).toFixed(4)}</td></tr>
                 </tbody>
             </table>
@@ -84,7 +103,7 @@ export class ModelView extends View {
                     <i class="bi bi-exclamation-triangle"></i>
                     Só ${formatPercent(stats.positiveRate, 1)} dos exemplos são positivos.
                     Chutando "não" em tudo o modelo já acerta
-                    ${formatPercent(1 - stats.positiveRate, 1)} — a accuracy acima está mentindo.
+                    ${formatPercent(baseline, 1)} — a accuracy sozinha não diz nada.
                 </div>` : ''}
         `;
     }

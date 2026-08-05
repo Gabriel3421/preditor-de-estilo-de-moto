@@ -91,15 +91,41 @@ Vetores de entrada:
 - **pessoa** (7 números): idade normalizada + one-hot de gênero + one-hot de renda
 - **moto** (11 números): preço + cilindrada + idade média de quem tem + one-hot de estilo
 
-## Problema conhecido: desbalanceamento
+## Negative sampling
 
-Com 39 motos e ~2 por garagem, só **~5% dos pares de treino são positivos**. Com
-`binaryCrossentropy` puro, a rede aprende que responder "não" para tudo já acerta
-95% — a accuracy no tfjs-vis fica ótima e o modelo, inútil.
+Cruzar cada pessoa com o catálogo inteiro dá 3.549 pares, dos quais só 175 são
+positivos — **4,9%**. Com esse desbalanceamento a rede acha um atalho: responder
+"não" para tudo já acerta 95,1% e chega a uma loss de ~0,20. Curvas lindas no
+tfjs-vis, modelo inútil. E com batch de 32, uma em cada cinco batches não tem
+nenhum positivo — nesses passos não há contraste algum para aprender.
 
-O painel **Modelo** mostra a taxa de positivos justamente pra deixar isso visível.
+A correção está em `createTrainingData`: para cada moto que a pessoa tem,
+sorteamos `NEGATIVES_PER_POSITIVE` motos que ela não tem, em vez de usar as 39.
 
-Correção pendente: **negative sampling** na montagem dos exemplos
-(`createTrainingData` em `src/workers/modelTrainingWorker.js`) — amostrar 3 a 5
-motos que a pessoa não tem para cada moto que ela tem, em vez de usar o catálogo
-inteiro. Isso leva os positivos para ~20% e ainda acelera o treino.
+|  | sem sampling | com k=4 |
+| --- | --- | --- |
+| exemplos | 3.549 | 875 |
+| positivos | 4,9% | 20,0% |
+| positivos por batch | 1,58 | 6,40 |
+| batches sem positivo | 19,8% | 0,08% |
+| chute burro acerta | 95,1% | 80,0% |
+
+Por que é legítimo: os zeros não são fatos observados. "Ana não tem uma Gold Wing"
+não quer dizer que ela rejeitou a Gold Wing — é ausência de informação. O conjunto
+de negativos é presumido e essencialmente infinito, e o que a rede precisa é do
+**contraste** entre o que a pessoa tem e uma amostra do que ela não tem.
+
+O preço é que o score deixa de ser probabilidade calibrada. Não afeta este app,
+que só usa a **ordem** dos scores e a média por estilo — e a subamostragem
+uniforme preserva a ordem. Se precisar da probabilidade real, subtraia `log(k)`
+do logit antes da sigmoid.
+
+`NEGATIVES_PER_POSITIVE` fica no topo do worker, junto com os `WEIGHTS`. Suba pra
+40 e o desbalanceamento volta.
+
+## Lendo o painel Modelo
+
+A accuracy nunca aparece sozinha — ao lado dela fica o **chute burro**, a acurácia
+de um modelo que responde "não" para tudo. A linha que importa é o **ganho sobre
+o chute**: se for perto de zero, a rede não aprendeu nada, por mais bonita que
+esteja a curva no tfjs-vis.

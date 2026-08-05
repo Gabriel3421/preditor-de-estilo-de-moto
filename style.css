@@ -96,6 +96,11 @@ body {
     font-weight: 600;
 }
 
+/* separa os blocos: massa / exemplos de treino / resultado */
+.training-stats tr.section td {
+    border-top: 2px solid #adb5bd;
+}
+
 /* ---------- predição de estilo ---------- */
 
 .prediction-winner {
