@@ -2,7 +2,6 @@ export class ProductController {
     #productView;
     #productService;
     #events;
-    #currentUser = null;
 
     constructor({ productView, events, productService }) {
         this.#productView = productView;
@@ -17,29 +16,16 @@ export class ProductController {
     }
 
     async init() {
-        this.setupCallbacks();
         this.setupEventListeners();
 
         const motos = await this.#productService.getProducts();
-        this.#productView.render(motos, { disableButtons: true });
+        this.#productView.render(motos);
     }
 
     setupEventListeners() {
-        this.#events.onUserSelected((user) => {
-            this.#currentUser = user;
-            this.#productView.onUserSelected(user);
-        });
-
+        // a única coisa que reordena o catálogo é uma predição nova
         this.#events.onRecommendationsReady(({ recommendations }) => {
-            this.#productView.render(recommendations, { disableButtons: false, ranked: true });
+            this.#productView.render(recommendations, { ranked: true });
         });
-    }
-
-    setupCallbacks() {
-        this.#productView.registerBuyProductCallback(this.handleAddToGarage.bind(this));
-    }
-
-    async handleAddToGarage(moto) {
-        this.#events.dispatchPurchaseAdded({ user: this.#currentUser, product: moto });
     }
 }

@@ -10,7 +10,6 @@ export class UserView extends View {
 
     #garageTemplate;
     #onUserSelect;
-    #onGarageRemove;
 
     constructor() {
         super();
@@ -24,10 +23,6 @@ export class UserView extends View {
 
     registerUserSelectCallback(callback) {
         this.#onUserSelect = callback;
-    }
-
-    registerPurchaseRemoveCallback(callback) {
-        this.#onGarageRemove = callback;
     }
 
     /**
@@ -65,6 +60,12 @@ export class UserView extends View {
         this.#garageList.innerHTML = '';
     }
 
+    /**
+     * A garagem é só exibição. Ela alimenta o TREINO, não a previsão — o
+     * vetor da pessoa é montado apenas com idade, gênero e renda. Por isso
+     * não há como editá-la aqui: mexer nela sem retreinar não mudaria nada,
+     * e a interface estaria mentindo.
+     */
     renderGarage(motos) {
         if (!this.#garageTemplate) return;
 
@@ -74,35 +75,14 @@ export class UserView extends View {
             return;
         }
 
-        this.#garageList.innerHTML = motos.map(moto => this.#garageItem(moto)).join('');
-        this.attachGarageClickHandlers();
-    }
-
-    addToGarage(moto) {
-        if (this.#garageList.textContent.includes('Garagem vazia')) {
-            this.#garageList.innerHTML = '';
-        }
-
-        this.#garageList.insertAdjacentHTML('afterbegin', this.#garageItem(moto));
-
-        const added = this.#garageList.firstElementChild.querySelector('.past-purchase');
-        added.classList.add('past-purchase-highlight');
-
-        setTimeout(() => {
-            added.classList.remove('past-purchase-highlight');
-        }, 1000);
-
-        this.attachGarageClickHandlers();
-    }
-
-    #garageItem(moto) {
-        return this.replaceTemplate(this.#garageTemplate, {
-            name: moto.name,
-            category: moto.category,
-            cilindrada: moto.cilindrada,
-            price: formatBRL(moto.price),
-            product: JSON.stringify(moto),
-        });
+        this.#garageList.innerHTML = motos.map(moto =>
+            this.replaceTemplate(this.#garageTemplate, {
+                name: moto.name,
+                category: moto.category,
+                cilindrada: moto.cilindrada,
+                price: formatBRL(moto.price),
+            })
+        ).join('');
     }
 
     attachUserSelectListener() {
@@ -117,29 +97,6 @@ export class UserView extends View {
             if (this.#onUserSelect) {
                 this.#onUserSelect(userId);
             }
-        });
-    }
-
-    attachGarageClickHandlers() {
-        document.querySelectorAll('.past-purchase').forEach(item => {
-            item.onclick = () => {
-                const moto = JSON.parse(item.dataset.product);
-                const userId = this.getSelectedUserId();
-                const element = item.closest('.col-md-12');
-
-                this.#onGarageRemove({ element, userId, product: moto });
-
-                element.style.transition = 'opacity 0.5s ease';
-                element.style.opacity = '0';
-
-                setTimeout(() => {
-                    element.remove();
-
-                    if (document.querySelectorAll('.past-purchase').length === 0) {
-                        this.renderGarage([]);
-                    }
-                }, 500);
-            };
         });
     }
 

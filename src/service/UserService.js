@@ -30,16 +30,6 @@ export class UserService {
         return users.find(user => user.id === userId);
     }
 
-    async updateUser(user) {
-        const users = this.#getStorage();
-        const userIndex = users.findIndex(candidate => candidate.id === user.id);
-
-        users[userIndex] = { ...users[userIndex], ...user };
-        this.#setStorage(users);
-
-        return users[userIndex];
-    }
-
     #getStorage() {
         const data = sessionStorage.getItem(this.#storageKey);
         return data ? JSON.parse(data) : [];

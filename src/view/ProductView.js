@@ -1,13 +1,16 @@
 import { View } from './View.js';
 import { formatBRL, formatPercent } from './labels.js';
 
+/**
+ * O catálogo é somente leitura. A garagem das pessoas é massa de treino e
+ * mora nos JSON de data/ — não se edita pela interface, porque editar ali
+ * não muda previsão nenhuma até o modelo ser retreinado.
+ */
 export class ProductView extends View {
     #motoList = document.querySelector('#productList');
     #motoListTitle = document.querySelector('#productListTitle');
 
-    #buttons;
     #motoTemplate;
-    #onBuyProduct;
 
     constructor() {
         super();
@@ -18,23 +21,14 @@ export class ProductView extends View {
         this.#motoTemplate = await this.loadTemplate('./src/view/templates/moto-card.html');
     }
 
-    onUserSelected(user) {
-        // Só dá para mexer na garagem de alguém depois de escolher a pessoa
-        this.setButtonsState(user?.id ? false : true);
-    }
-
-    registerBuyProductCallback(callback) {
-        this.#onBuyProduct = callback;
-    }
-
-    render(motos, { disableButtons = true, ranked = false } = {}) {
+    render(motos, { ranked = false } = {}) {
         if (!this.#motoTemplate) return;
 
         this.#motoListTitle.textContent = ranked
             ? 'Catálogo ordenado por afinidade'
             : 'Catálogo de motos';
 
-        const html = motos.map(moto => {
+        this.#motoList.innerHTML = motos.map(moto => {
             return this.replaceTemplate(this.#motoTemplate, {
                 id: moto.id,
                 name: moto.name,
@@ -42,13 +36,8 @@ export class ProductView extends View {
                 cilindrada: moto.cilindrada,
                 price: formatBRL(moto.price),
                 scoreBadge: this.#scoreBadge(moto.score),
-                product: JSON.stringify(moto),
             });
         }).join('');
-
-        this.#motoList.innerHTML = html;
-        this.attachBuyButtonListeners();
-        this.setButtonsState(disableButtons);
     }
 
     /**
@@ -61,39 +50,6 @@ export class ProductView extends View {
         const percent = formatPercent(score);
         const tone = score >= 0.5 ? 'text-bg-success' : score >= 0.2 ? 'text-bg-warning' : 'text-bg-light';
 
-        return `<div class="moto-score mb-2"><span class="badge ${tone}">afinidade ${percent}</span></div>`;
-    }
-
-    setButtonsState(disabled) {
-        if (!this.#buttons) {
-            this.#buttons = document.querySelectorAll('.buy-now-btn');
-        }
-
-        this.#buttons.forEach(button => {
-            button.disabled = disabled;
-        });
-    }
-
-    attachBuyButtonListeners() {
-        this.#buttons = document.querySelectorAll('.buy-now-btn');
-
-        this.#buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const moto = JSON.parse(button.dataset.product);
-                const originalText = button.innerHTML;
-
-                button.innerHTML = '<i class="bi bi-check-circle-fill"></i> Na garagem';
-                button.classList.remove('btn-primary');
-                button.classList.add('btn-success');
-
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('btn-success');
-                    button.classList.add('btn-primary');
-                }, 500);
-
-                this.#onBuyProduct(moto, button);
-            });
-        });
+        return `<div class="moto-score"><span class="badge ${tone}">afinidade ${percent}</span></div>`;
     }
 }

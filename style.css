@@ -32,15 +32,17 @@ body {
     flex-direction: column;
 }
 
-.buy-now-btn {
-    margin-top: auto;
-}
-
 #productList .col-md-3 {
     margin-bottom: 20px;
 }
 
-/* ---------- garagem ---------- */
+/* ---------- garagem (somente leitura) ---------- */
+
+.garage-note {
+    font-size: 0.75rem;
+    line-height: 1.35;
+    margin-bottom: 8px;
+}
 
 .past-purchase {
     background-color: #f8f9fa;
@@ -49,18 +51,6 @@ body {
     border-radius: 5px;
     font-size: 0.85em;
     border-left: 3px solid #0d6efd;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.past-purchase:hover {
-    background-color: #f8d7da;
-    border-left: 3px solid #dc3545;
-}
-
-.past-purchase-highlight {
-    background-color: #d4edda;
-    border-left: 3px solid #28a745;
 }
 
 .user-purchase-summary {

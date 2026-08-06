@@ -32,7 +32,7 @@ const worker = WorkerController.init({ worker: mlWorker, events: Events });
 ModelController.init({ modelView, userService, events: Events });
 TFVisorController.init({ tfVisorView, events: Events });
 PredictionController.init({ predictionView, events: Events });
-ProductController.init({ productView, userService, productService, events: Events });
+ProductController.init({ productView, productService, events: Events });
 
 const userController = UserController.init({ userView, userService, events: Events });
 

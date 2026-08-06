@@ -1,18 +1,18 @@
 [
     {
         "id": 901,
-        "name": "Josézin da Silva",
+        "name": "Samuel Pini Milanez",
         "age": 30,
         "gender": "masculino",
-        "financialStatus": "media",
+        "financialStatus": "alta",
         "purchases": []
     },
     {
         "id": 902,
-        "name": "Marina Castro",
-        "age": 22,
-        "gender": "feminino",
-        "financialStatus": "baixa",
+        "name": "Jeferson da Silveira Pontes",
+        "age": 27,
+        "gender": "masculino",
+        "financialStatus": "alta",
         "purchases": []
     },
     {

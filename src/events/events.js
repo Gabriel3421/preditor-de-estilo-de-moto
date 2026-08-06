@@ -2,7 +2,6 @@ import { events } from "./constants.js";
 
 export default class Events {
 
-
     static onTrainingComplete(callback) {
         document.addEventListener(events.trainingComplete, (event) => {
             return callback(event.detail);
@@ -89,7 +88,6 @@ export default class Events {
         document.dispatchEvent(event);
     }
 
-
     static onUserSelected(callback) {
         document.addEventListener(events.userSelected, (event) => {
             return callback(event.detail);
@@ -112,37 +110,5 @@ export default class Events {
             detail: data
         });
         document.dispatchEvent(event);
-    }
-
-
-    static onPurchaseAdded(callback) {
-        document.addEventListener(events.purchaseAdded, (event) => {
-            return callback(event.detail);
-        });
-    }
-    static dispatchPurchaseAdded(data) {
-        const event = new CustomEvent(events.purchaseAdded, {
-            detail: data
-        });
-        document.dispatchEvent(event);
-    }
-
-    static onPurchaseRemoved(callback) {
-        document.addEventListener(events.purchaseRemoved, (event) => {
-            return callback(event.detail);
-        });
-    }
-
-    static dispatchEventPurchaseRemoved(data) {
-        const event = new CustomEvent(events.purchaseRemoved, {
-            detail: data
-        });
-        document.dispatchEvent(event);
-    }
-
-    static onProgressUpdate(callback) {
-        document.addEventListener(events.modelProgressUpdate, (event) => {
-            return callback(event.detail);
-        });
     }
 }

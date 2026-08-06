@@ -91,6 +91,30 @@ Vetores de entrada:
 - **pessoa** (7 números): idade normalizada + one-hot de gênero + one-hot de renda
 - **moto** (11 números): preço + cilindrada + idade média de quem tem + one-hot de estilo
 
+## A garagem não entra na previsão
+
+O vetor da pessoa é montado **só com o perfil**. A garagem dela não aparece ali —
+ela serve para gerar os **rótulos** do treino, e nada mais. Duas consequências:
+
+1. Funciona para quem não tem moto nenhuma, que é o caso de uso principal.
+2. Duas pessoas com o mesmo perfil recebem sempre a mesma previsão.
+
+Por isso a garagem é **somente leitura** na interface. Editá-la ali não mudaria
+previsão alguma até um retreino, e um botão que sugere o contrário mente sobre o
+que o sistema faz. Para mexer na massa, edite `data/users.json` (ou o gerador) e
+clique em **Treinar modelo**.
+
+Isso também eliminou um **vazamento de rótulo** que existia no código original: lá
+o vetor do usuário era a média dos vetores das compras dele, e o rótulo era "o
+usuário comprou este produto". Para quem tinha uma compra só, o vetor de entrada
+era idêntico ao vetor do item rotulado como 1 — bastava comparar os dois para
+acertar sempre, sem aprender nada. A resposta estava escondida dentro da pergunta.
+
+Se um dia quiser que a garagem influencie a previsão, o caminho correto é
+*leave-one-out*: ao montar o exemplo do par (Ana, Gold Wing), calcular o vetor da
+Ana com a garagem dela **menos** a Gold Wing. Somar a garagem direto ao vetor traz
+o vazamento de volta.
+
 ## Negative sampling
 
 Cruzar cada pessoa com o catálogo inteiro dá 3.549 pares, dos quais só 175 são
