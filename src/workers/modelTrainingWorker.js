@@ -28,10 +28,10 @@ const WEIGHTS = {
     gender: 0.15,
     financial: 0.40,
     // atributos da moto
-    category: 0.40,
-    price: 0.30,
-    cilindrada: 0.20,
-    ownerAge: 0.10,
+    category: 0.30,
+    price: 0.40,
+    cilindrada: 0.25,
+    ownerAge: 0.15,
 };
 
 // Ao resumir "o quanto esse estilo combina com a pessoa", usamos a média das
