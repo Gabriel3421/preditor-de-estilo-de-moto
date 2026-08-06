@@ -6,6 +6,13 @@ financeira** — uma rede neural treinada no browser com TensorFlow.js tenta pre
 
 O nome não entra no modelo: é identificador, não característica.
 
+![Interface do preditor: painel de perfil, diagnóstico do treino e catálogo de motos, com os gráficos de precisão e erro do tfjs-vis abertos à direita](demo.png)
+
+Da esquerda para a direita: o **perfil** da pessoa selecionada e a garagem dela,
+o painel do **modelo** com o diagnóstico do treino, e o **estilo previsto**. O
+painel do tfjs-vis abre sozinho durante o treino com as curvas de precisão e erro
+por época.
+
 ## Rodar
 
 ```
