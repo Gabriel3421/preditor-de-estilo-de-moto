@@ -28,10 +28,10 @@ const WEIGHTS = {
     gender: 0.15,
     financial: 0.40,
     // atributos da moto
-    category: 0.30,
-    price: 0.40,
-    cilindrada: 0.25,
-    ownerAge: 0.15,
+    category: 0.40,
+    price: 0.30,
+    cilindrada: 0.20,
+    ownerAge: 0.10,
 };
 
 // Ao resumir "o quanto esse estilo combina com a pessoa", usamos a média das
@@ -372,6 +372,9 @@ async function trainModel({ users }) {
     const { model, lastAccuracy, lastLoss } = await configureNeuralNetAndTrain(trainData);
     _model = model;
 
+    // precisa vir depois de _model, porque avalia rodando o próprio modelo
+    const evaluation = evaluateStyleHitRate(context);
+
     postMessage({ type: workerEvents.progressUpdate, progress: { progress: 100 } });
     postMessage({
         type: workerEvents.trainingComplete,
@@ -386,6 +389,7 @@ async function trainModel({ users }) {
             negativesPerPositive: NEGATIVES_PER_POSITIVE,
             accuracy: lastAccuracy,
             loss: lastLoss,
+            evaluation,
         }
     });
 }
@@ -393,38 +397,41 @@ async function trainModel({ users }) {
 // ====================================================================
 // 🔮 Predição
 // ====================================================================
-function predictStyle({ user }) {
-    if (!_model) return;
 
-    const context = _globalCtx;
+/**
+ * Roda o modelo em todos os pares (pessoa, moto) do catálogo de uma vez e
+ * devolve as motos ordenadas pela nota de afinidade.
+ *
+ * Em aplicações reais: guarde os vetores das motos num banco vetorial
+ * (Postgres/pgvector, Pinecone), busque as N mais próximas do vetor da pessoa
+ * e rode o predict só nessas — não no catálogo inteiro.
+ */
+function rankMotosFor(user, context) {
+    // tidy() descarta os tensores intermediários. Sem isso, avaliar 91 pessoas
+    // seguidas vazaria memória da GPU/WebGL.
+    const scores = tf.tidy(() => {
+        const userVector = encodeUser(user, context).dataSync();
+        const inputs = context.motoVectors.map(({ vector }) => [...userVector, ...vector]);
 
-    // 1️⃣ Converte o perfil da pessoa no mesmo formato numérico do treino.
-    const userVector = encodeUser(user, context).dataSync();
+        return _model.predict(tf.tensor2d(inputs)).dataSync();
+    });
 
-    // 2️⃣ Cria um par (pessoa, moto) para cada moto do catálogo.
-    //    O modelo prevê a nota de afinidade de cada par.
-    const inputs = context.motoVectors.map(({ vector }) => [...userVector, ...vector]);
-
-    // Em aplicações reais: guarde os vetores das motos num banco vetorial
-    // (Postgres/pgvector, Pinecone), busque as N mais próximas do vetor da
-    // pessoa e rode o predict só nessas — não no catálogo inteiro.
-
-    // 3️⃣ Vira um único tensor [numMotos, inputDim] e roda a rede de uma vez.
-    const predictions = _model.predict(tf.tensor2d(inputs));
-    const scores = predictions.dataSync();
-
-    const ranking = context.motoVectors
+    return context.motoVectors
         .map((item, index) => ({ ...item.meta, score: scores[index] }))
         .sort((a, b) => b.score - a.score);
+}
 
-    // 4️⃣ Agrega as notas por estilo: a resposta que a gente quer não é
-    //    "qual moto", é "qual ESTILO de moto essa pessoa tem".
+/**
+ * A resposta que a gente quer não é "qual moto", é "qual ESTILO de moto".
+ * Resume o ranking numa nota por estilo — média das STYLE_TOP_N melhores.
+ */
+function aggregateByStyle(ranking) {
     const scoresByStyle = ranking.reduce((acc, moto) => {
         (acc[moto.category] ??= []).push(moto.score);
         return acc;
     }, {});
 
-    const styles = Object.entries(scoresByStyle)
+    return Object.entries(scoresByStyle)
         .map(([style, styleScores]) => {
             const top = styleScores.slice(0, STYLE_TOP_N);
 
@@ -435,12 +442,64 @@ function predictStyle({ user }) {
             };
         })
         .sort((a, b) => b.score - a.score);
+}
+
+// ====================================================================
+// 📏 HIT-RATE DE ESTILO — a métrica que mede o que o app promete
+// --------------------------------------------------------------------
+// A accuracy que o model.fit reporta é sobre a tarefa de classificar PARES
+// (esta pessoa tem ESTA moto?), e essa tarefa tem um teto baixíssimo: duas
+// pessoas com o mesmo perfil são idênticas para o modelo, mas uma tem uma
+// MT-07 e a outra uma Ninja 400. Medindo na massa, pessoas do mesmo balde
+// de perfil concordam só 6,5% nas motos específicas — o rótulo por par é
+// irredutivelmente ruidoso, e perseguir essa accuracy é perseguir ruído.
+//
+// O hit-rate abaixo mede a tarefa de verdade: para cada pessoa que tem moto,
+// o estilo top-1 previsto está entre os estilos que ela realmente tem?
+//
+// ⚠️ É medido na PRÓPRIA massa de treino (in-sample), então é otimista. Serve
+// para comparar regimes (mudou o k? mudou os pesos?) e para comparar com os
+// baselines abaixo, não como estimativa de desempenho em gente nova. O passo
+// seguinte natural seria separar um conjunto de teste.
+// ====================================================================
+function evaluateStyleHitRate(context) {
+    const evaluated = context.users.filter(user => user.purchases.length);
+    if (!evaluated.length) return null;
+
+    const styleCounts = {};
+    let hits = 0;
+
+    evaluated.forEach(user => {
+        const ownedStyles = new Set(user.purchases.map(moto => moto.category));
+        ownedStyles.forEach(style => {
+            styleCounts[style] = (styleCounts[style] || 0) + 1;
+        });
+
+        const [predicted] = aggregateByStyle(rankMotosFor(user, context));
+        if (ownedStyles.has(predicted.style)) hits++;
+    });
+
+    return {
+        hitRate: hits / evaluated.length,
+        evaluated: evaluated.length,
+        // chutar um estilo ao acaso
+        randomBaseline: 1 / context.numCategories,
+        // chutar sempre o estilo mais comum da massa
+        majorityBaseline: Math.max(...Object.values(styleCounts)) / evaluated.length,
+    };
+}
+
+function predictStyle({ user }) {
+    if (!_model) return;
+
+    const context = _globalCtx;
+    const ranking = rankMotosFor(user, context);
 
     postMessage({
         type: workerEvents.recommend,
         user,
         recommendations: ranking,
-        styles,
+        styles: aggregateByStyle(ranking),
     });
 }
 

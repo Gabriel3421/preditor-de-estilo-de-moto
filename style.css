@@ -91,6 +91,21 @@ body {
     border-top: 2px solid #adb5bd;
 }
 
+.training-stats td.metric-group {
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding-top: 10px;
+}
+
+.training-stats td.sub {
+    padding-left: 20px;
+    color: #6c757d;
+    font-weight: 400;
+}
+
 /* ---------- predição de estilo ---------- */
 
 .prediction-winner {

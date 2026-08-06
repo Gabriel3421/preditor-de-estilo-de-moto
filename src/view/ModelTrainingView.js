@@ -89,7 +89,12 @@ export class ModelView extends View {
                         <td>${stats.positives} <span class="text-muted">(${formatPercent(stats.positiveRate, 1)})</span></td>
                     </tr>
 
-                    <tr class="section"><td>Accuracy final</td><td>${formatPercent(accuracy, 1)}</td></tr>
+                    ${this.#hitRateRows(stats.evaluation)}
+
+                    <tr class="section"><td colspan="2" class="metric-group">
+                        Classificação de pares <span class="text-muted">— tarefa interna, teto baixo</span>
+                    </td></tr>
+                    <tr><td>Accuracy final</td><td>${formatPercent(accuracy, 1)}</td></tr>
                     <tr><td>Chute burro ("não" em tudo)</td><td>${formatPercent(baseline, 1)}</td></tr>
                     <tr class="${gainTone}">
                         <td>Ganho sobre o chute</td>
@@ -105,6 +110,30 @@ export class ModelView extends View {
                     Chutando "não" em tudo o modelo já acerta
                     ${formatPercent(baseline, 1)} — a accuracy sozinha não diz nada.
                 </div>` : ''}
+        `;
+    }
+
+    /**
+     * O hit-rate vem primeiro na tabela de propósito: é a métrica que mede o
+     * que o app promete ("acertei o estilo?"). A accuracy de pares fica abaixo,
+     * rotulada como tarefa interna, para ninguém confundir as duas de novo.
+     */
+    #hitRateRows(evaluation) {
+        if (!evaluation) return '';
+
+        const { hitRate, evaluated, randomBaseline, majorityBaseline } = evaluation;
+        const tone = hitRate > majorityBaseline ? 'table-success' : 'table-danger';
+
+        return `
+            <tr class="section"><td colspan="2" class="metric-group">
+                Acerto de estilo <span class="text-muted">— o que o app entrega</span>
+            </td></tr>
+            <tr class="${tone}">
+                <td>Hit-rate top-1 <span class="text-muted">(${evaluated} pessoas)</span></td>
+                <td>${formatPercent(hitRate, 1)}</td>
+            </tr>
+            <tr><td class="sub">chutar a moda</td><td>${formatPercent(majorityBaseline, 1)}</td></tr>
+            <tr><td class="sub">chutar ao acaso</td><td>${formatPercent(randomBaseline, 1)}</td></tr>
         `;
     }
 

@@ -156,7 +156,43 @@ do logit antes da sigmoid.
 
 ## Lendo o painel Modelo
 
-A accuracy nunca aparece sozinha — ao lado dela fica o **chute burro**, a acurácia
-de um modelo que responde "não" para tudo. A linha que importa é o **ganho sobre
-o chute**: se for perto de zero, a rede não aprendeu nada, por mais bonita que
-esteja a curva no tfjs-vis.
+O painel mostra **duas** métricas, e elas medem coisas diferentes. A de cima é a
+que importa.
+
+### Acerto de estilo — o que o app entrega
+
+**Hit-rate top-1**: para cada pessoa da massa que tem moto, o estilo previsto está
+entre os estilos que ela realmente tem? Vem acompanhado de dois baselines:
+
+```
+chutar a moda      22,0%   sempre responder o estilo mais comum da massa
+chutar ao acaso    12,5%   1 em 8 estilos
+```
+
+O teto medido é **53,8%** — a acurácia de um oráculo que decora, para cada balde
+de perfil (faixa etária × gênero × renda), a distribuição exata de estilos. Nenhum
+modelo com essas três features pode fazer melhor.
+
+É medido **na própria massa de treino**, então é otimista: serve para comparar
+regimes (mudou o `k`? mudou os `WEIGHTS`?) e para comparar com os baselines, não
+como estimativa de desempenho em gente nova. Separar um conjunto de teste é o
+próximo passo natural.
+
+### Classificação de pares — tarefa interna
+
+É a `accuracy` que o `model.fit` reporta, sobre a pergunta "esta pessoa tem ESTA
+moto?". Vem com o **chute burro** ("não" para tudo) ao lado e o **ganho sobre o
+chute** entre os dois.
+
+Esse ganho é pequeno por construção, e não adianta persegui-lo. Duas pessoas com
+o mesmo perfil são idênticas para o modelo, mas uma tem uma MT-07 e a outra uma
+Ninja 400 — na massa, pessoas do mesmo balde concordam só **6,5%** nas motos
+específicas contra **20,5%** nos estilos. O rótulo por par é irredutivelmente
+ruidoso.
+
+Para dimensionar: com esta massa o chute burro dá 80,0%, um oráculo que decora o
+balde dá 82,5% no corte de 0,5 e 87,7% no melhor corte possível. Um modelo em
+83,7% já está acima do oráculo e a 4 pontos do teto absoluto. Não há espaço ali.
+
+**Resumo**: se o hit-rate de estilo estiver bem acima da moda, o modelo funciona —
+mesmo que o ganho sobre o chute na tarefa de pares pareça modesto.
